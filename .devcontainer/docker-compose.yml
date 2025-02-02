@@ -6,3 +6,17 @@ services:
     command: /bin/sh -c "while sleep 1000; do :; done"
     volumes:
       - ..:/workspace
+    networks:
+      - devcontainer_network
+  caddy:
+    image: caddy:latest
+    container_name: caddy
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile
+    ports: 
+      - "3000:3000"
+    networks:
+      - devcontainer_network
+networks:
+  devcontainer_network:
+    driver: bridge
