@@ -1,4 +1,4 @@
-localhost:3000 {
+{$HOST_URL} {
     tls internal
     handle /* {
         reverse_proxy http://my_app:3000
