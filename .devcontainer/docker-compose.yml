@@ -16,7 +16,7 @@ services:
     ports: 
       - "3000:3000"
     environment:
-      - HOST_URL=example.dev
+      - HOST_URL=localhost:3000
     networks:
       - devcontainer_network
 networks:
