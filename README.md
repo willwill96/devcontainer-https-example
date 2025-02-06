@@ -27,3 +27,32 @@ You can further mirror your production environment by spoofing your production u
 3. Add ports 80 & 443 to the [ports config for caddy](https://github.com/willwill96/devcontainer-https-example/blob/main/.devcontainer/docker-compose.yml#L17)
 
 At this point you should be able to access the app at `https://example.dev`!
+
+# Removing the SSL Cert Warning
+
+You can resolve issues around the SSL Cert by installing the caddy docker image's cert on your local machine. To do this, follow these steps for your OS:
+
+> Note: If using Windows & WSL, you will need to follow both the Windows (in a windows command prompty) & Unix Instructions (in a WSL command prompt)
+
+- **Unix**
+```sh
+$ docker cp caddy:/data/caddy/pki/authorities/local/root.crt /path/to/caddy.crt
+
+$ mv /path/to/caddy.crt /usr/local/share/ca-certificates
+
+$ update-ca-certificates
+```
+
+- **Windows**
+```sh
+$ docker cp caddy:/data/caddy/pki/authorities/local/root.crt C:\\path\\to\\caddy.crt
+
+$ certutil -addstore -f "CADDY" C:\\path\\to\\caddy.crt
+```
+
+- **MacOS** 
+```sh
+$ docker cp caddy:/data/caddy/pki/authorities/local/root.crt /path/to/caddy.crt
+
+$ sudo security add-certificates -k /Library/Keychains/System.keychain /path/to/caddy.crt
+```

@@ -1,4 +1,4 @@
-FROM node:22
+FROM node:22-bookworm
 
 # Install basic development tools
 RUN apt update && apt install -y less man-db sudo

@@ -13,7 +13,8 @@ services:
     container_name: caddy
     volumes:
       - ./Caddyfile:/etc/caddy/Caddyfile
-    ports: 
+      - caddy_data:/data/
+    ports:
       - "3000:3000"
     environment:
       - HOST_URL=localhost:3000
@@ -22,3 +23,5 @@ services:
 networks:
   devcontainer_network:
     driver: bridge
+volumes:
+  caddy_data:
