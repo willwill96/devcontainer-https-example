@@ -32,22 +32,22 @@ At this point you should be able to access the app at `https://example.dev`!
 
 You can resolve issues around the SSL Cert by installing the caddy docker image's cert on your local machine. To do this, follow these steps for your OS:
 
-> Note: If using Windows & WSL, you will need to follow both the Windows (in a windows command prompty) & Unix Instructions (in a WSL command prompt)
+> Note: If using Windows & WSL, you will need to follow both the Windows (in a windows command prompt or Powershell) & Unix Instructions (in a WSL command prompt)
 
 - **Unix**
 ```sh
 $ docker cp caddy:/data/caddy/pki/authorities/local/root.crt /path/to/caddy.crt
 
-$ mv /path/to/caddy.crt /usr/local/share/ca-certificates
+$ sudo mv /path/to/caddy.crt /usr/local/share/ca-certificates
 
-$ update-ca-certificates
+$ sudo update-ca-certificates
 ```
 
 - **Windows**
 ```sh
 $ docker cp caddy:/data/caddy/pki/authorities/local/root.crt C:\\path\\to\\caddy.crt
 
-$ certutil -addstore -f "CADDY" C:\\path\\to\\caddy.crt
+$ certutil -addstore -f "ROOT" C:\\path\\to\\caddy.crt
 ```
 
 - **MacOS** 
